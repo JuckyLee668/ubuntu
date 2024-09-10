@@ -8,8 +8,11 @@ if [ ! $SOC ]; then
     echo "please enter soc number:"
     echo "请输入要构建CPU的序号:"
     echo "[0] Exit Menu"
-    echo "[1] rk3566/rk3568"
-    echo "[2] rk3588/rk3588s"
+    echo "[1] rk3128"
+    echo "[2] rk3528"
+    echo "[3] rk3562"
+    echo "[4] rk3566/rk3568"
+    echo "[5] rk3588/rk3588s"
     echo "---------------------------------------------------------"
     read input
 
@@ -17,9 +20,18 @@ if [ ! $SOC ]; then
         0)
             exit;;
         1)
-            SOC=rk356x
+            SOC=rk3128
             ;;
         2)
+            SOC=rk3528
+            ;;
+        3)
+            SOC=rk3562
+            ;;
+        4)
+            SOC=rk356x
+            ;;
+        5)
             SOC=rk3588
             ;;
         *)
@@ -76,6 +88,16 @@ install_packages() {
         rk3328|rk3528)
         MALI=utgard-450
         ISP=rkisp
+        MIRROR=carp-rk352x
+        ;;
+        rk3128|rk3036)
+        MALI=utgard-400
+        ISP=rkisp
+        ;;
+        rk3562)
+        MALI=bifrost-g52-g13p0
+        ISP=rkaiq_rk3562
+        MIRROR=carp-rk356x
         ;;
         rk356x|rk3566|rk3568)
         MALI=bifrost-g52-g13p0
