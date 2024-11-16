@@ -1,0 +1,46 @@
+name: Release-22.04
+
+on:
+  push:
+    branches:
+      - 22.04  # 设置为你希望触发 release 的分支
+permissions:
+  contents: write
+jobs:
+    build:
+      runs-on: ubuntu-22.04
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+          
+        - name: Install dependencies
+          run: |
+            sudo apt-get install binfmt-support qemu-user-static
+            sudo dpkg -i ubuntu-build-service/packages/*
+        - name: Build Firmware
+          run: |
+            echo "3" | ./mk-base-ubuntu.sh
+
+      
+        - name: Create Release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          with:
+            tag_name: "v1.0.0-${{ github.run_number }}"  # 使用运行号确保 tag 唯一
+            release_name: "Release v1.0.0-${{ github.run_number }}"
+            body: "自动发布的 Release"
+            draft: false
+            prerelease: false
+
+
+        - name: Upload Release Asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./ubuntu.tar.gz  # 需要发布的文件路径
+            asset_name: "ubuntu.tar.gz"  # 文件名
+            asset_content_type: application/octet-stream
