@@ -3,7 +3,7 @@ name: Release-22.04
 on:
   push:
     branches:
-      - 22.04  # 设置为你希望触发 release 的分支
+      - main  # 设置为你希望触发 release 的分支
 permissions:
   contents: write
 jobs:
