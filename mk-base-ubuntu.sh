@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-
 if [ ! $TARGET ]; then
 	echo "---------------------------------------------------------"
 	echo "please enter TARGET version number:"
