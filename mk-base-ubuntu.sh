@@ -171,16 +171,16 @@ fi
 
 pip3 install python-periphery Adafruit-Blinka -i https://mirrors.aliyun.com/pypi/simple/
 
-HOST=lubancat
+HOST=xii
 
 # Create User
-useradd -G sudo -m -s /bin/bash cat
-passwd cat <<IEOF
-temppwd
-temppwd
+useradd -G sudo -m -s /bin/bash lee
+passwd lee <<IEOF
+6868
+6868
 IEOF
-gpasswd -a cat video
-gpasswd -a cat audio
+gpasswd -a lee video
+gpasswd -a lee audio
 passwd root <<IEOF
 root
 root
@@ -190,7 +190,7 @@ IEOF
 sed -i '/pam_securetty.so/s/^/# /g' /etc/pam.d/login
 
 # hostname
-echo lubancat > /etc/hostname
+echo xii > /etc/hostname
 
 # set localtime
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -241,7 +241,7 @@ EOF
 
 DATE=$(date +%Y%m%d)
 echo -e "\033[47;36m Run tar pack ubuntu-base-$TARGET-$ARCH-$DATE.tar.gz \033[0m"
-sudo tar zcf ubuntu-base-$TARGET-$ARCH-$DATE.tar.gz $TARGET_ROOTFS_DIR
+sudo tar zcf ubuntu.tar.gz $TARGET_ROOTFS_DIR
 
 # sudo rm $TARGET_ROOTFS_DIR -r
 
