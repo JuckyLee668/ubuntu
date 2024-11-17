@@ -129,7 +129,7 @@ fi
 
 echo -e "\033[47;36m Building for $VERSION \033[0m"
 
-if [ ! -e ubuntu-base-"$TARGET"-$ARCH-*.tar.gz ]; then
+if [ ! -e ubuntu.tar.gz ]; then
     echo "\033[41;36m Run mk-base-ubuntu.sh first \033[0m"
     exit -1
 fi
@@ -142,7 +142,7 @@ trap finish ERR
 
 echo -e "\033[47;36m Extract image \033[0m"
 sudo rm -rf $TARGET_ROOTFS_DIR
-sudo tar -xpf ubuntu-base-$TARGET-$ARCH-*.tar.gz
+sudo tar -xpf ubuntu.tar.gz
 
 # packages folder
 sudo mkdir -p $TARGET_ROOTFS_DIR/packages
