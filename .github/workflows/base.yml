@@ -20,6 +20,7 @@ jobs:
         - name: Build Firmware
           run: |
             echo "3" | ./mk-base-ubuntu.sh
+            echo -e "4\n3" | ./mk-ubuntu-rootfs.sh
 
       
         - name: Create Release
@@ -41,6 +42,6 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: ./ubuntu.tar.gz  # 需要发布的文件路径
-            asset_name: "ubuntu.tar.gz"  # 文件名
+            asset_path: ./ubuntu-rootfs.img  # 需要发布的文件路径
+            asset_name: "ubuntu-rootfs.img"  # 文件名
             asset_content_type: application/octet-stream
