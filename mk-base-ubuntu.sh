@@ -124,7 +124,7 @@ fi
 \${APT_INSTALL} net-tools openssh-server ifupdown alsa-utils ntp network-manager gdb inetutils-ping libssl-dev \
     vsftpd tcpdump can-utils i2c-tools strace vim iperf3 ethtool netplan.io toilet htop pciutils usbutils curl \
     whiptail gnupg bc xinput gdisk parted gcc sox libsox-fmt-all gpiod libgpiod-dev python3-pip python3-libgpiod \
-    guvcview u-boot-tools screen
+    guvcview u-boot-tools screen bash-completion wireless-tools
 
 \${APT_INSTALL} ttf-wqy-zenhei xfonts-intl-chinese
 
@@ -202,9 +202,9 @@ for service in ${services[@]}; do
 done
 
 # disbale the wire/nl80211
-systemctl mask wpa_supplicant-wired@
-systemctl mask wpa_supplicant-nl80211@
-systemctl mask wpa_supplicant@
+# systemctl mask wpa_supplicant-wired@
+# systemctl mask wpa_supplicant-nl80211@
+# systemctl mask wpa_supplicant@
 
 # Make systemd less spammy
 
@@ -241,7 +241,7 @@ EOF
 
 DATE=$(date +%Y%m%d)
 echo -e "\033[47;36m Run tar pack ubuntu-base-$TARGET-$ARCH-$DATE.tar.gz \033[0m"
-sudo tar zcf ubuntu.tar.gz $TARGET_ROOTFS_DIR
+sudo tar zcf ubuntu.tar.gz $TARGET_ROOTFS_DIR/*
 
 # sudo rm $TARGET_ROOTFS_DIR -r
 
